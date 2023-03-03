@@ -1,0 +1,29 @@
+body {
+    margin:0px;
+    font-family: sans-serif;
+    
+    
+}
+
+h2 {
+    text-transform:uppercase;
+    font-weight: bold;
+}
+
+.adddive {
+    margin-top:30px;
+}
+
+input {
+    text-align: center;
+    padding:10px 0px;
+    width:700px;
+}
+
+
+
+button {
+    width:100px;
+    padding:5px 12px;
+    cursor: pointer;
+}

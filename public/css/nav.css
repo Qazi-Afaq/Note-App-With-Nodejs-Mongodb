@@ -1,0 +1,21 @@
+nav {
+    list-style-type: none;
+    margin:0px 0px;
+    padding:20px 20px;
+    background-color:whitesmoke;
+    font-weight: 100;
+    font-size:14px;;
+}
+
+
+nav li a {
+    text-transform:capitalize;
+    font-family: sans-serif;
+    color:black;    
+}
+
+nav a {
+    text-decoration: none;
+    border-bottom:1px solid black;
+    padding-bottom:5px;
+}

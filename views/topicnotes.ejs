@@ -1,0 +1,88 @@
+<%- include('./includes/head.ejs') -%>
+    <title>Topic Notes</title>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/topicnotes.css">
+</head>
+<body>
+    <%- include('./includes/nav') -%>
+    <% if (topic == null) { %>
+        <h2>This Topic does not exist</h2>
+    <% } else { %>
+        <div style="text-align: center;">
+            <h2>Below You Can View and Add notes for the Topic: <%= topic.title %></h2>
+        </div>
+        
+        <div class="switch">
+            <button class="seenotesbtn">See Notes/Add Notes</button>
+
+        </div>
+
+        <div class="searchdiv">
+            <input placeholder="Enter Note Titles To Search" type="text">
+        </div>
+
+        <!-- add  divs section here -->
+        <div style="display:none" class="addnotesdiv">
+            <div id="form-div">
+                <form class="addnotesform" action="/addnote/<%= topic._id %>" method="POST">
+                    <input required placeholder="Enter Title" name="title" type="text">
+                    <textarea required placeholder="Eenter Description" name="description" id="" cols="30" rows="10"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                
+                <button class="addimagebtn">add image url</button>
+                <div class="imagesattacheddiv">
+                    <!-- <p>show images here</p> -->
+                </div>
+                <div style="display:none" class="pasteimageurldiv">
+                    <input class="imageurlfield" type="text" placeholder="add Your image url here">
+                    <button class="attachimagebtn">Attach Image</button>
+                </div>
+                <button class="addvideobtn">add video</button>
+                <div class="videosattacheddiv">
+                    <!-- <p>show videos here</p> -->
+                </div>
+                <div style="display:none" class="pastevideourldiv">
+                    <input class="videourlfield" type="text" placeholder="add Your Video url here">
+                    <button class="attachvideobtn">Attach Video</button>
+                </div>
+            </div>
+            <!-- <p style="position:absolute;bottom:0">http://drive.google.com/uc?export=view&id=</p> -->
+        </div>
+        <div style="display:block ;" class="viewnotesdiv">
+            <% notes.forEach(note => { %>
+                <div class="notediv">
+                    <div class="editanddeletenotediv">
+                        <form class="editnoteform" action="/editnote/<%=note._id%>?topicid=<%= topic._id %>" method="POST">
+                            <button>Edit</button>
+                        </form>
+                        <form class="deletenoteform" action="/deletenote/<%=note._id%>" method="POST">
+                            <button>Delete</button>
+                        </form>                        
+                    </div>
+                    <h3><%= note.title %></h3>
+                    <p><%- note.description %></p>
+                    
+                    <ul class="noteimageslist">
+                        <% note.imageUrl.forEach(url => { %>
+                        <img src="<%= url %>" alt="">
+                        <% }) %>
+                    </ul>
+                    <ul class="notevideoslist">
+                        <% note.videoUrl.forEach(url => { %>
+                            <iframe width="560" height="315" src="<%= url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <% }) %>
+                    </ul>
+
+                </div>
+            <% }) %>
+            <% if (notes.length == 0) { %>
+                <p>No Notes found for "<%= topic.title %>"</p>
+            <% } %>
+        </div>
+        <% } %>
+
+<script src="/js/topicnotes.js"></script>
+</body>
+
+</html>

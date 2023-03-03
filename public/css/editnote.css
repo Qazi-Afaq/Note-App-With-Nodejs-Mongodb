@@ -1,0 +1,13 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+.imagesattacheddiv img {
+    width:200px;
+    cursor: pointer;
+}
+
+.videosattacheddiv iframe {
+    width:300px;
+}

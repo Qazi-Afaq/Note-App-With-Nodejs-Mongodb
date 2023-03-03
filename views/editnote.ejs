@@ -1,0 +1,44 @@
+<%- include('./includes/head.ejs') %>
+<title>Edit Note</title>
+<link rel="stylesheet" href="/css/topicnotes.css">
+<link rel="stylesheet" href="/css/editnote.css">
+<link rel="stylesheet" href="/css/nav.css">
+</head>
+
+<body>
+    <%- include('./includes/nav.ejs') %>
+    <div class="addnotesdiv">
+        <div id="form-div">
+            <form class="addnotesform" action="/updatenote/<%=note._id%>?topicid=<%=topic._id%>" method="POST">
+                <input value="<%= note.title%>" required placeholder="Enter Title" name="title" type="text">
+                <textarea required placeholder="Eenter Description" name="description" id="" cols="30" rows="10"><%= note.description %></textarea>
+                <button type="submit">Update Note</button>
+            </form>
+            <p style="position:absolute;bottom:0">http://drive.google.com/uc?export=view&id=</p>
+            <button class="addimagebtn">add image url</button>
+            <div class="imagesattacheddiv">
+                <!-- <p>show images here</p> -->
+                <% images.forEach(img => { %>
+                    <input hidden type="text" value="<%=img%>">
+                <% }) %>
+            </div>
+            <div style="display:none;" class="pasteimageurldiv">
+                <input class="imageurlfield" type="text" placeholder="edit Your image url here">
+                <button class="attachimagebtn">Attach Image</button>
+            </div>
+            <button class="addvideobtn">add video</button>
+            <div class="videosattacheddiv">
+                <!-- <p>show videos here</p> -->
+                <% videos.forEach(vid => { %>
+                    <input hidden type="text" value="<%=vid%>">
+                <% }) %>
+            </div>
+            <div style="display:none;" class="pastevideourldiv">
+                <input class="videourlfield" type="text" placeholder="edit Your image url here">
+                <button class="attachvideobtn">Attach Video</button>
+            </div>
+    </div>
+    </div>
+    <script src="/js/editnote.js"></script>
+</body>
+</html>
